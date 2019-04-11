@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { RootState } from '../actions/types';
 
-class CommentList extends Component {
+interface Props {
+   comments: string[];
+}
+
+class CommentList extends Component<Props> {
    renderComments() {
       const { comments } = this.props;
 
-      return comments.map(comment => <li key={comment}>{comment}</li>);
+      return comments.map(comment => <li>{comment}</li>);
    }
 
    render() {
@@ -18,7 +23,7 @@ class CommentList extends Component {
    }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: RootState) {
    return { comments: state.comments };
 }
 

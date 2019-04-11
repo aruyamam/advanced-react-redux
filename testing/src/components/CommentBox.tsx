@@ -1,18 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component, FormEvent } from 'react';
 import { connect } from 'react-redux';
-import * as actions from 'actions';
+import * as actions from '../actions';
+import { fetchComments, saveComment } from '../actions/index';
 
-class CommentBox extends Component {
+interface Props {
+   fetchComments: typeof fetchComments;
+   saveComment: typeof saveComment;
+}
+
+interface State {
+   comment: string;
+}
+
+class CommentBox extends Component<Props, State> {
    state = { comment: '' };
 
-   handleChange = event => {
+   handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
       this.setState({ comment: event.target.value });
    };
 
-   handleSubmit = event => {
+   handleSubmit = (event: FormEvent) => {
       event.preventDefault();
 
-      this.props.saveComment(this.state.comment);
+      const { comment } = this.state;
+      this.props.saveComment(comment);
       this.setState({ comment: '' });
    };
 
