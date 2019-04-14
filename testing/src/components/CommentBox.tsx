@@ -2,32 +2,21 @@ import React, { Component, FormEvent } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { fetchComments, saveComment } from '../actions/index';
+import requrieAuth from './requrieAuth';
 
-interface Props {
+export interface IActionProps {
    fetchComments: typeof fetchComments;
    saveComment: typeof saveComment;
 }
 
-interface State {
+interface IState {
    comment: string;
 }
 
-class CommentBox extends Component<Props, State> {
-   state = { comment: '' };
+class CommentBox extends Component<IActionProps, IState> {
+   public state: IState = { comment: '' };
 
-   handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-      this.setState({ comment: event.target.value });
-   };
-
-   handleSubmit = (event: FormEvent) => {
-      event.preventDefault();
-
-      const { comment } = this.state;
-      this.props.saveComment(comment);
-      this.setState({ comment: '' });
-   };
-
-   render() {
+   public render() {
       const { comment } = this.state;
       const { fetchComments } = this.props;
 
@@ -46,9 +35,21 @@ class CommentBox extends Component<Props, State> {
          </div>
       );
    }
+
+   private handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+      this.setState({ comment: event.target.value });
+   };
+
+   private handleSubmit = (event: FormEvent) => {
+      event.preventDefault();
+
+      const { comment } = this.state;
+      this.props.saveComment(comment);
+      this.setState({ comment: '' });
+   };
 }
 
 export default connect(
    null,
    actions
-)(CommentBox);
+)(requrieAuth(CommentBox));
