@@ -14,7 +14,13 @@
       "no-console": false,
       "object-literal-sort-keys": false,
       "ordered-imports": false,
-      "ter-indent": [true, 3]
+      "ter-indent": [
+         true,
+         3,
+         {
+            "SwitchCase": 1
+         }
+      ]
    },
    "linterOptions": {
       "exclude": [
