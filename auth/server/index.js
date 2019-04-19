@@ -2,8 +2,12 @@ const express = require('express');
 const http = require('http');
 const morgan = require('morgan');
 const router = require('./router');
+const mongoose = require('mongoose');
 
 const app = express();
+
+// DB Setup
+mongoose.connect('mongodb://localhost:27017/auth', { useNewUrlParser: true });
 
 // App Setup
 app.use(morgan('combined'));
