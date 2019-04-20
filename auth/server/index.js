@@ -7,7 +7,9 @@ const mongoose = require('mongoose');
 const app = express();
 
 // DB Setup
-mongoose.connect('mongodb://localhost:27017/auth', { useNewUrlParser: true });
+mongoose
+   .set('useCreateIndex', true)
+   .connect('mongodb://localhost:27017/auth', { useNewUrlParser: true });
 
 // App Setup
 app.use(morgan('combined'));
