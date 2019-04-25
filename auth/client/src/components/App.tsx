@@ -1,11 +1,15 @@
 import React from 'react';
 import Header from './Header';
 
-const App = () => {
+interface IProps {
+   children: React.ReactNode;
+}
+
+const App: React.FC<IProps> = ({ children }) => {
    return (
       <div>
          <Header />
-         Hi, im the app
+         {children}
       </div>
    );
 };
