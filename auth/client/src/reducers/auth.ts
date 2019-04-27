@@ -8,6 +8,6 @@ const INITIAL_STATE: IAuthState = {
    errorMessage: ''
 };
 
-export default function(state = INITIAL_STATE, action) {
+export default function(state = INITIAL_STATE, action: any) {
    return state;
 }
