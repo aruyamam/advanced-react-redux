@@ -1,7 +1,4 @@
-export interface IAuthState {
-   authenticated: string;
-   errorMessage: string;
-}
+import { IAuthState } from '../actions/types';
 
 const INITIAL_STATE: IAuthState = {
    authenticated: '',

@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
-import { Field, reduxForm, InjectedFormProps, FormProps } from 'redux-form';
+import { Field, reduxForm, InjectedFormProps } from 'redux-form';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
+import { IFormProps } from '../../actions/types';
 
-class Signup extends Component<InjectedFormProps> {
-   onSubmit = (fromProps: object) => {
-      console.log(fromProps);
+interface IProps {
+   signup: typeof actions.signup;
+}
+
+class Signup extends Component<InjectedFormProps<IFormProps> & IProps> {
+   onSubmit = (fromProps: IFormProps) => {
+      this.props.signup(fromProps);
    };
 
    render() {
@@ -35,4 +43,10 @@ class Signup extends Component<InjectedFormProps> {
    }
 }
 
-export default reduxForm({ form: 'signup' })(Signup);
+export default compose<React.ComponentClass>(
+   connect(
+      null,
+      actions
+   ),
+   reduxForm<IFormProps, IProps>({ form: 'signup' })
+)(Signup);

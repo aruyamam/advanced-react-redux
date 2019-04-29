@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer, FormStateMap } from 'redux-form';
-import auth, { IAuthState } from './auth';
+import auth from './auth';
+import { IAuthState } from '../actions/types';
 
-interface IAppState {
+export interface IAppState {
    auth: IAuthState;
    form: FormStateMap;
 }
