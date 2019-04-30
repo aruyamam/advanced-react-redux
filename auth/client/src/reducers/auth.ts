@@ -1,4 +1,4 @@
-import { IAuthState } from '../actions/types';
+import { AuthActionTypes, IAuthState } from '../actions/types';
 
 const INITIAL_STATE: IAuthState = {
    authenticated: '',
@@ -6,5 +6,14 @@ const INITIAL_STATE: IAuthState = {
 };
 
 export default function(state = INITIAL_STATE, action: any) {
-   return state;
+   switch (action.type) {
+      case AuthActionTypes.AUTH_USER:
+         return {
+            ...state,
+            authenticated: action.payload
+         };
+
+      default:
+         return state;
+   }
 }

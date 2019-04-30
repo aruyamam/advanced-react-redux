@@ -1,7 +1,10 @@
-import { SyntheticEvent } from 'react';
-
-export enum AuthAction {
+export enum AuthActionTypes {
    AUTH_USER = 'auth_user'
+}
+
+export interface AuthAction {
+   type: AuthActionTypes.AUTH_USER;
+   playload: string;
 }
 
 export interface IFormProps {
