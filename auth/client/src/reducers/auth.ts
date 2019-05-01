@@ -1,11 +1,15 @@
-import { AuthActionTypes, IAuthState } from '../actions/types';
+import { Reducer } from 'redux';
+import { AuthAction, AuthActionTypes, IAuthState } from '../actions/types';
 
 const INITIAL_STATE: IAuthState = {
    authenticated: '',
    errorMessage: ''
 };
 
-export default function(state = INITIAL_STATE, action: any) {
+const authReducer: Reducer<IAuthState, AuthAction> = (
+   state = INITIAL_STATE,
+   action
+) => {
    switch (action.type) {
       case AuthActionTypes.AUTH_USER:
          return {
@@ -13,7 +17,15 @@ export default function(state = INITIAL_STATE, action: any) {
             authenticated: action.payload
          };
 
+      case AuthActionTypes.AUTH_ERROR:
+         return {
+            ...state,
+            errorMessage: action.payload
+         };
+
       default:
          return state;
    }
-}
+};
+
+export default authReducer;

@@ -1,10 +1,11 @@
 export enum AuthActionTypes {
-   AUTH_USER = 'auth_user'
+   AUTH_USER = 'auth_user',
+   AUTH_ERROR = 'auth_error'
 }
 
 export interface AuthAction {
-   type: AuthActionTypes.AUTH_USER;
-   playload: string;
+   type: AuthActionTypes;
+   payload: string;
 }
 
 export interface IFormProps {

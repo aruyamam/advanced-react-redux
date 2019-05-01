@@ -4,8 +4,10 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { IFormProps } from '../../actions/types';
+import { IAppState } from '../../reducers';
 
 interface IProps {
+   errorMessage: string;
    signup: typeof actions.signup;
 }
 
@@ -15,7 +17,7 @@ class Signup extends Component<InjectedFormProps<IFormProps> & IProps> {
    };
 
    render() {
-      const { handleSubmit } = this.props;
+      const { errorMessage, handleSubmit } = this.props;
 
       return (
          <form onSubmit={handleSubmit(this.onSubmit)}>
@@ -37,15 +39,20 @@ class Signup extends Component<InjectedFormProps<IFormProps> & IProps> {
                   autoComplete="none"
                />
             </fieldset>
+            <div>{errorMessage}</div>
             <button>Sign Up!</button>
          </form>
       );
    }
 }
 
+function mapStateToProps(state: IAppState) {
+   return { errorMessage: state.auth.errorMessage };
+}
+
 export default compose<React.ComponentClass>(
    connect(
-      null,
+      mapStateToProps,
       actions
    ),
    reduxForm<IFormProps, IProps>({ form: 'signup' })
