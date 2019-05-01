@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router-dom';
 import * as actions from '../../actions';
 import { IFormProps } from '../../actions/types';
 import { IAppState } from '../../reducers';
 
-interface IProps {
+interface IProps extends RouteComponentProps {
    errorMessage: string;
    signup: typeof actions.signup;
 }
 
 class Signup extends Component<InjectedFormProps<IFormProps> & IProps> {
    onSubmit = (fromProps: IFormProps) => {
-      this.props.signup(fromProps);
+      this.props.signup(fromProps, () => {
+         this.props.history.push('/feature');
+      });
    };
 
    render() {
