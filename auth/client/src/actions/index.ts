@@ -36,3 +36,28 @@ export const signout: ActionCreator<IAuthAction> = () => {
       payload: ''
    };
 };
+
+export const signin: ActionCreator<
+   ThunkAction<Promise<void>, IAuthState, IFormProps, IAuthAction>
+> = (formProps: IFormProps, callback: Function) => async (
+   dispatch: Dispatch
+) => {
+   try {
+      const response = await axios.post(
+         'http://localhost:3090/signin',
+         formProps
+      );
+
+      dispatch({
+         type: AuthActionTypes.AUTH_USER,
+         payload: response.data.token
+      });
+      localStorage.setItem('token', response.data.token);
+      callback();
+   } catch (e) {
+      dispatch({
+         type: AuthActionTypes.AUTH_ERROR,
+         payload: 'Invalid login credentials'
+      });
+   }
+};
