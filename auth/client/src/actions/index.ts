@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { ActionCreator, Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
-import { AuthAction, AuthActionTypes, IAuthState, IFormProps } from './types';
+import { IAuthAction, AuthActionTypes, IAuthState, IFormProps } from './types';
 
 export const signup: ActionCreator<
-   ThunkAction<Promise<void>, IAuthState, IFormProps, AuthAction>
+   ThunkAction<Promise<void>, IAuthState, IFormProps, IAuthAction>
 > = (formProps: IFormProps, callback: Function) => async (
    dispatch: Dispatch
 ) => {
@@ -26,4 +26,13 @@ export const signup: ActionCreator<
          payload: 'Email in use'
       });
    }
+};
+
+export const signout: ActionCreator<IAuthAction> = () => {
+   localStorage.removeItem('token');
+
+   return {
+      type: AuthActionTypes.AUTH_USER,
+      payload: ''
+   };
 };

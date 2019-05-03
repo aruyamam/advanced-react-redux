@@ -3,7 +3,7 @@ export enum AuthActionTypes {
    AUTH_ERROR = 'auth_error'
 }
 
-export interface AuthAction {
+export interface IAuthAction {
    type: AuthActionTypes;
    payload: string;
 }

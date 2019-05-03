@@ -1,12 +1,12 @@
 import { Reducer } from 'redux';
-import { AuthAction, AuthActionTypes, IAuthState } from '../actions/types';
+import { IAuthAction, AuthActionTypes, IAuthState } from '../actions/types';
 
 const INITIAL_STATE: IAuthState = {
    authenticated: '',
    errorMessage: ''
 };
 
-const authReducer: Reducer<IAuthState, AuthAction> = (
+const authReducer: Reducer<IAuthState, IAuthAction> = (
    state = INITIAL_STATE,
    action
 ) => {
