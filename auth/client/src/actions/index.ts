@@ -18,6 +18,7 @@ export const signup: ActionCreator<
          type: AuthActionTypes.AUTH_USER,
          payload: response.data.token
       });
+      localStorage.setItem('token', response.data.token);
       callback();
    } catch (e) {
       dispatch({

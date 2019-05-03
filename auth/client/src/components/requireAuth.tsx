@@ -4,7 +4,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { IAppState } from '../reducers';
 
 interface IProps extends RouteComponentProps {
-   auth: string;
+   auth: string | null;
 }
 
 const requireAuth = (ChildComponent: React.ComponentType) => {

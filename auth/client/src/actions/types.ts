@@ -14,6 +14,6 @@ export interface IFormProps {
 }
 
 export interface IAuthState {
-   authenticated: string;
+   authenticated: string | null;
    errorMessage: string;
 }
